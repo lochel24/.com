@@ -7,20 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primary: #1a2332;
-            --color-secondary: #6b4423;
-            --color-accent: #d4841c;
-            --color-light: #f9f7f4;
-            --color-text: #2d2d2d;
-            --color-text-light: #6a6a6a;
-            --color-bg-header: rgba(249, 247, 244, 0.97);
-            --color-border: rgba(107, 68, 35, 0.15);
-            --color-hero-bg: linear-gradient(135deg, #1a2332 0%, #2d3a4f 100%);
-            --color-footer-bg: #1a2332;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body.dark-mode {
             --color-primary: #e8e6e3;
             --color-secondary: #d4a574;
             --color-accent: #d4841c;
@@ -31,31 +17,41 @@
             --color-border: rgba(212, 165, 116, 0.2);
             --color-hero-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             --color-footer-bg: #0a0a0a;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.light-mode {
+            --color-primary: #1a2332;
+            --color-secondary: #6b4423;
+            --color-accent: #d4841c;
+            --color-light: #f9f7f4;
+            --color-text: #2d2d2d;
+            --color-text-light: #6a6a6a;
+            --color-bg-header: rgba(249, 247, 244, 0.97);
+            --color-border: rgba(107, 68, 35, 0.15);
+            --color-hero-bg: linear-gradient(135deg, #1a2332 0%, #2d3a4f 100%);
+            --color-footer-bg: #1a2332;
         }
 
         .theme-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1001;
             background: var(--color-accent);
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: var(--transition);
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            margin-left: 1rem;
         }
 
         .theme-toggle:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(212, 132, 28, 0.4);
+            background: #b86e16;
         }
 
         * {
@@ -125,6 +121,7 @@
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -534,6 +531,9 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#gallery">Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span id="themeIcon">☀️</span>
+                </button>
             </ul>
         </nav>
     </header>
@@ -614,34 +614,30 @@
         </div>
     </footer>
 
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <span id="themeIcon">🌙</span>
-    </button>
-
     <script>
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
 
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            body.classList.add('dark-mode');
-            themeIcon.textContent = '☀️';
-        } else {
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
             themeIcon.textContent = '🌙';
+        } else {
+            themeIcon.textContent = '☀️';
         }
 
         themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
             
-            if (body.classList.contains('dark-mode')) {
-                themeIcon.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            } else {
+            if (body.classList.contains('light-mode')) {
                 themeIcon.textContent = '🌙';
                 localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
             }
         });
 
