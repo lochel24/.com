@@ -16,7 +16,8 @@
             --color-bg-header: rgba(15, 15, 15, 0.97);
             --color-border: rgba(212, 165, 116, 0.2);
             --color-hero-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            --color-footer-bg: #0a0a0a;
+            --color-footer-bg: #140B02;
+            --color-portfolio-bg: #140B02;
             --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -30,7 +31,8 @@
             --color-bg-header: rgba(249, 247, 244, 0.97);
             --color-border: rgba(107, 68, 35, 0.15);
             --color-hero-bg: linear-gradient(135deg, #1a2332 0%, #2d3a4f 100%);
-            --color-footer-bg: #1a2332;
+            --color-footer-bg: #140B02;
+            --color-portfolio-bg: #140B02;
         }
 
         .theme-toggle {
@@ -312,9 +314,16 @@
 
         /* Main Content */
         .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 7rem 0;
+            background: var(--color-portfolio-bg);
+        }
+
+        .container-inner {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 7rem 3rem;
+            padding: 0 3rem;
         }
 
         .section-title {
@@ -518,7 +527,11 @@
             }
 
             .container {
-                padding: 4rem 1.5rem;
+                padding: 4rem 0;
+            }
+
+            .container-inner {
+                padding: 0 1.5rem;
             }
 
             .gallery-grid {
@@ -566,6 +579,7 @@
     </section>
 
     <main class="container" id="gallery">
+        <div class="container-inner">
         <div class="gallery-category">
             <div class="gallery-grid">
                 <div class="gallery-item">
@@ -616,6 +630,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </main>
 
     <footer id="contact">
@@ -623,6 +638,8 @@
 
             
             <div class="footer-bottom">
+                <p>&copy; 2026 People Spaces Repair &amp; Upgrades LLC. All rights reserved.</p>
+                <p>Serving Denver Metropolitan &amp; Castle Rock, Colorado</p>
             </div>
         </div>
     </footer>
